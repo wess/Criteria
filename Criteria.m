@@ -1,12 +1,12 @@
 //
-//  Dispatch.m
-//  Dispatch
+//  Criteria.m
+//  Criteria
 //
 //  Created by Wess Cope on 8/14/12.
 //  Copyright (c) 2012 Wess Cope. All rights reserved.
 //
 
-#import "Dispatch.h"
+#import "Criteria.h"
 
 static NSDictionary *parsedArguments()
 {
@@ -64,17 +64,17 @@ static NSDictionary *parsedArguments()
     return [argsDict copy];
 }
 
-@interface Dispatch()
-+ (Dispatch *)instance;
+@interface Criteria()
++ (Criteria *)instance;
 @end
 
-@implementation Dispatch
-+ (Dispatch *)instance
+@implementation Criteria
++ (Criteria *)instance
 {
-    static Dispatch *sharedInstance = nil;
+    static Criteria *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[Dispatch alloc] init];
+        sharedInstance = [[Criteria alloc] init];
     });
     
     return sharedInstance;
@@ -93,13 +93,13 @@ static NSDictionary *parsedArguments()
 + (void)addOption:(id)argument callback:(DispatchCallback)callback
 {
     //argument can be an array or single string only
-    Dispatch *router = [Dispatch instance];
+    Criteria *router = [Criteria instance];
     [router.routes setObject:callback forKey:argument];
 }
 
 + (void)run
 {
-    Dispatch *router          = [Dispatch instance];
+    Criteria *router          = [Criteria instance];
     NSDictionary *arguments   = parsedArguments();
     NSArray *keys             = [arguments allKeys];
     NSArray *routeKeys        = [router.routes allKeys];
@@ -114,7 +114,7 @@ static NSDictionary *parsedArguments()
                 {
                     if([routeString isEqualToString:key])
                     {
-                        DispatchCallback callback = [router.routes objectForKey:routeKey];
+                        CriteriaCallback callback = [router.routes objectForKey:routeKey];
                         callback([arguments objectForKey:key]);
                         return;
                     }

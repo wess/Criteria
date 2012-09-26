@@ -1,21 +1,23 @@
-# Dispatch
+# Criteria
 
-> Dispatch is a super simple library for creating objective-c command line tools.  A very simple, callback approach to handling arguments and values.
-Just include the .h file, in the main or were ever.  Add some options and throw a callback in there that will be executed when Dispatch hits the defined flags.
+> Criteria is a super simple library for creating objective-c command line tools.  A very simple, callback approach to handling arguments and values.
+Just include the .h file, in the main or were ever.  Add some options and throw a callback in there that will be executed when Criteria hits the defined flags.
 
 ## Usage Example:
 ```objectivec
+
+#import "Criteria.h"
 
 int main(int argc, const char * argv[])
 {
     @autoreleasepool
     {
 
-		[Dispatch addOption:@[@"v", @"version"] callback:^(NSString *value) {
+		[Criteria addOption:@[@"v", @"version"] callback:^(NSString *value) {
 			printf("\nVersion: 1.0.0\n");
 		}];
 
-		[Dispatch run];
+		[Criteria run];
 	}
 	
 	return 0;
