@@ -90,7 +90,7 @@ static NSDictionary *parsedArguments()
     return self;
 }
 
-+ (void)addOption:(id)argument callback:(DispatchCallback)callback
++ (void)addOption:(id)argument callback:(CriteriaCallback)callback
 {
     //argument can be an array or single string only
     Criteria *router = [Criteria instance];
